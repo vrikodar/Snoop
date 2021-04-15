@@ -1,0 +1,46 @@
+#!/bin/bash
+#Author::: SxNade
+
+#code is very simple AND short 
+
+NC='\033[0m' # No Color
+GR='\033[0;32m'
+BRed='\033[1;31m'
+Blue='\033[0;34m'
+
+echo " "
+
+echo -e "		53 6E 6F 6F 70"
+
+echo -e "			SxNade"
+
+sleep 1
+
+function start() {
+	echo -e "\n[+] Checking Given Links\n"
+	echo -e "${Blue}=============================================================================================================${Nc}\n"
+}
+
+
+if [ "${1}" = "--file" ]
+then
+	echo "[+] Reading From File"
+	start
+	for link in $(cat ${2} 2> /dev/null)
+	do
+		curl --user-agent snoop http://checkshorturl.com/expand.php?u=${link} &> /tmp/file.txt
+		Found=$(cat /tmp/file.txt | grep Long | awk -F "w\">" '{print $2}')
+		echo -e "[+] ${BRed}${link}${NC} ::: ${GR}${Found}${NC}"
+		sleep 1
+	done
+
+else
+	start
+	for link in ${@}
+	do
+		curl http://checkshorturl.com/expand.php?u=${link} &> /tmp/file.txt
+		Found=$(cat /tmp/file.txt | grep Long | awk -F "w\">" '{print $2}')
+		echo -e "[+] ${BRed}${link}${NC} ::: ${GR}${Found}${NC}"
+	done
+fi
+
