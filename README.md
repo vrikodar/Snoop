@@ -5,6 +5,13 @@ Snoop can be used to expand shortened Links such as those from bit.ly etc.. righ
 
 # Running
 
+          $ sudo apt install git
+          $ git clone https://github.com/SxNade/Snoop
+          $ cd Snoop
+          $ chmod +x Snoop
+          
+          $ ./Snoop
+
 ![Capture](https://github.com/SxNade/Snoop/blob/main/snoop.gif)
 
 **Feeding Links from terminal**
